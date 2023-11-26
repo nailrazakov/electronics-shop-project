@@ -22,6 +22,12 @@ class Item:
         # при инициализации добавляет экземпляр класса в список all
         Item.all.append(self)
 
+    def __repr__(self):
+        return f"{__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return self.name
+
     @property
     # геттер для name
     def name(self):

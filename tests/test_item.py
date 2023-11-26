@@ -44,3 +44,11 @@ def test_string_to_number():
 def test_name_setter(item_test):
     item_test.name = "12345678900000000"
     assert item_test.name == '1234567890'
+
+
+def test_repr(item_test):
+    assert repr(item_test) == "Item('Test', 10000, 10)"
+
+
+def test_str(item_test):
+    assert str(item_test) == 'Test'
