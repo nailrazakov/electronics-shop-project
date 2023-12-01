@@ -52,3 +52,10 @@ def test_repr(item_test):
 
 def test_str(item_test):
     assert str(item_test) == 'Test'
+
+
+def test_add(item_test, phone_test, any_test):
+    assert item_test + phone_test == 20
+    assert phone_test + item_test == 20
+    with pytest.raises(Exception, match='Возможно сложить только с экземплярами `Phone` или `Item` классов'):
+        var = phone_test + any_test

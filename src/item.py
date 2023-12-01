@@ -1,4 +1,4 @@
-import csv
+import csv, pytest
 
 
 class Item:
@@ -27,6 +27,15 @@ class Item:
 
     def __str__(self):
         return self.name
+
+    def __add__(self, other):
+        """
+        Магический метод сложения с проверкой условий, что слагаемые именно класса Item
+        """
+        if isinstance(other, Item):
+            return int(self.quantity) + int(other.quantity)
+        else:
+            raise Exception("Возможно сложить только с экземплярами `Phone` или `Item` классов")
 
     @property
     # геттер для name
