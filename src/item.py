@@ -35,7 +35,7 @@ class Item:
         if isinstance(other, Item):
             return int(self.quantity) + int(other.quantity)
         else:
-            raise Exception("Возможно сложить только с экземплярами `Phone` или `Item` классов")
+            raise TypeError("Возможно сложить только с экземплярами `Phone` или `Item` классов")
 
     @property
     # геттер для name
