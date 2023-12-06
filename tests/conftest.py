@@ -1,6 +1,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+from src.keyboard import Keyboard
 
 
 class AnyClass:
@@ -21,6 +22,11 @@ def item_test():
 @pytest.fixture
 def phone_test():
     return Phone('Test', 10000, 10, 2)
+
+
+@pytest.fixture
+def keyboard_test():
+    return Keyboard('Logitech G910', 2000, 50)
 
 
 @pytest.fixture

@@ -1,4 +1,4 @@
-import csv, pytest
+import csv
 
 
 class Item:
@@ -21,9 +21,10 @@ class Item:
         self.quantity = quantity
         # при инициализации добавляет экземпляр класса в список all
         Item.all.append(self)
+        super().__init__()
 
     def __repr__(self):
-        return f"{__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
         return self.name
@@ -56,7 +57,7 @@ class Item:
         Item.all.clear()
         """Класс-метод, инициализирующий экземпляры класса `Item` данными из файла items.csv"""
         with open(file, 'r') as csvfile:
-            items = csv.DictReader(csvfile)
+            items = list(csv.DictReader(csvfile))
             for item in items:
                 Item(item['name'], float(item['price']), int(item['quantity']))
 
