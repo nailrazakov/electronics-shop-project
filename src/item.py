@@ -1,6 +1,10 @@
 import csv
 
 
+class InstantiateCSVError(Exception):
+    pass
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -53,13 +57,18 @@ class Item:
             print('Длина наименования товара превышает 10 символов.')
 
     @classmethod
-    def instantiate_from_csv(cls, file):
+    def instantiate_from_csv(cls, file="items.csv"):
         Item.all.clear()
         """Класс-метод, инициализирующий экземпляры класса `Item` данными из файла items.csv"""
-        with open(file, 'r') as csvfile:
-            items = list(csv.DictReader(csvfile))
-            for item in items:
-                Item(item['name'], float(item['price']), int(item['quantity']))
+        try:
+            with open(file, 'r') as csvfile:
+                items = list(csv.DictReader(csvfile))
+                for item in items:
+                    Item(item['name'], float(item['price']), int(item['quantity']))
+        except FileNotFoundError:
+            raise FileNotFoundError("_Отсутствует файл items.csv_")
+        except (KeyError, ValueError):
+            raise InstantiateCSVError("_Файл items.csv поврежден_")
 
     @staticmethod
     def string_to_number(number):
