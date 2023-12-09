@@ -29,6 +29,11 @@ def test_all():
     assert len(Keyboard.all) == 2
 
 
+def test_language(keyboard_test):
+    with pytest.raises(AttributeError):
+        keyboard_test.language = 'CH'
+
+
 def test_calculate_total_price(keyboard_test):
     #  Тест Общая стоимость конкретного товара
     assert keyboard_test.calculate_total_price() == 100000
